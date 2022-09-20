@@ -46,15 +46,18 @@ namespace KeplerthModExample
                 Config.PlayerCharacter.BuffCtrl.AttachBuff(playerAccesorises[i], BuffTypeIndex.None, false, 0f, 1, 0f);
             }
 
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                ModDebug.Log(Config.PlayerCharacter.maxHp);
-                ModDebug.Log(Config.PlayerCharacter.hp);
-                ModDebug.Log(Config.PlayerCharacter.CreatureId);
+
+
+
+            //if (Input.GetKeyDown(KeyCode.T))
+            //{
+            //    ModDebug.Log(Config.PlayerCharacter.maxHp);
+            //    ModDebug.Log(Config.PlayerCharacter.hp);
+            //    ModDebug.Log(Config.PlayerCharacter.CreatureId);
                 
                 
                 
-            }
+            //}
 
             //if (Input.GetKeyDown(KeyCode.L))
             //{

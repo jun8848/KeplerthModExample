@@ -16,8 +16,10 @@ namespace KeplerthModExample
 
         static ModInit()
         {
+            
             HarmonyInstance harmonyInstance = HarmonyInstance.Create(ModInit.ModName);
             harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
+            // InitXml();
         }
 
         public static int GetModHasId()
@@ -26,16 +28,16 @@ namespace KeplerthModExample
         }
 
         // 初始化XML文件
-        private void InitXml()
-        {
-            string gamePath = System.AppDomain.CurrentDomain.BaseDirectory;
-            string modInfoPath = gamePath + "\\Keplerth_Data\\StreamingAssets\\Mods\\" + ModInit.ModName + "\\ModIni\\";
-            if (!Directory.Exists(modInfoPath))
-            {
-                Directory.CreateDirectory(modInfoPath);
-                XmlFile xml = new XmlFile();
-                xml.InitXml(modInfoPath);
-            }
-        }
+        //private void InitXml()
+        //{
+        //    string gamePath = System.AppDomain.CurrentDomain.BaseDirectory;
+        //    string modInfoPath = gamePath + "\\Keplerth_Data\\StreamingAssets\\Mods\\" + ModInit.ModName + "\\ModIni\\";
+        //    if (!Directory.Exists(modInfoPath))
+        //    {
+        //        Directory.CreateDirectory(modInfoPath);
+        //        XmlFile xml = new XmlFile();
+        //        xml.InitXml(modInfoPath);
+        //    }
+        //}
     }
 }
