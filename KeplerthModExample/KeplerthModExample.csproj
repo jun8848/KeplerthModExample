@@ -41,6 +41,10 @@
       <HintPath>..\..\..\Steam\steamapps\common\KEPLERTH\Keplerth_Data\StreamingAssets\Mods\Example\Assemblies\Assembly-CSharp-nstrip.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,14 +57,28 @@
       <HintPath>..\..\..\Steam\steamapps\common\KEPLERTH\Keplerth_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\Steam\steamapps\common\KEPLERTH\Keplerth_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\..\..\Steam\steamapps\common\KEPLERTH\Keplerth_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accessories.cs" />
+    <Compile Include="CreateNewItem.cs" />
+    <Compile Include="ExampleMod.cs" />
     <Compile Include="ModSortItems.cs" />
     <Compile Include="ModDebug.cs" />
     <Compile Include="ModInit.cs" />
     <Compile Include="ModTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlFile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

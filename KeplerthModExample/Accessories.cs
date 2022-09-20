@@ -1,6 +1,10 @@
-﻿using Harmony;
+﻿using DataBase;
+using Harmony;
 using Keplerth;
 using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
+
 namespace KeplerthModExample
 {
     [HarmonyPatch(typeof(GlobalDataManger), "Update")]
@@ -15,7 +19,7 @@ namespace KeplerthModExample
             List<int> playerAccessorieBuffs = ModTools.GetPlayerAccessorieBuffs();
 
             // 得到背包饰品buffId列表
-            List<int> playerAccesorises =  ModTools.GetAccesorieBuffIs();
+            List<int> playerAccesorises = ModTools.GetAccesorieBuffIs();
 
             // 判断背包饰品的buff是否存在 存在则移除
             for (int i = 0; i < playerAccesorises.Count; i++)
@@ -30,7 +34,7 @@ namespace KeplerthModExample
             for (int i = 0; i < playerOnBuffIds.Count; i++)
             {
                 if (!playerAccesorises.Contains(playerOnBuffIds[i]) && !playerAccessorieBuffs.Contains(playerOnBuffIds[i]))
-                {   
+                {
                     Config.PlayerCharacter.BuffCtrl.DetachBuff(playerOnBuffIds[i], BuffTypeIndex.None, false, 0f, true);
                 }
             }
@@ -38,11 +42,27 @@ namespace KeplerthModExample
             // 添加buff
             for (int i = 0; i < playerAccesorises.Count; i++)
             {
-                
+
                 Config.PlayerCharacter.BuffCtrl.AttachBuff(playerAccesorises[i], BuffTypeIndex.None, false, 0f, 1, 0f);
             }
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                ModDebug.Log(Config.PlayerCharacter.maxHp);
+                ModDebug.Log(Config.PlayerCharacter.hp);
+                ModDebug.Log(Config.PlayerCharacter.CreatureId);
+                
+                
+                
+            }
+
+            //if (Input.GetKeyDown(KeyCode.L))
+            //{
+            //    Config.PlayerCharacter.MaxHp = Config.PlayerCharacter.MaxHp+500;
+            //    confi
+            //    Config.PlayerCharacter.hp += 500;
+            //}
         }
     }
 
 }
-    

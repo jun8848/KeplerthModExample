@@ -1,6 +1,9 @@
 ﻿using Harmony;
 using Keplerth;
+using System.IO;
 using System.Reflection;
+using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
 
 
 namespace KeplerthModExample
@@ -8,20 +11,31 @@ namespace KeplerthModExample
     [StaticConstructorOnStartup]
     public class ModInit
     {
-        // Token: 0x06000005 RID: 5 RVA: 0x000020EC File Offset: 0x000002EC
+        // MOD名称
+        public static string ModName = "KeplerthModExample";
+
         static ModInit()
         {
             HarmonyInstance harmonyInstance = HarmonyInstance.Create(ModInit.ModName);
             harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
         }
 
-        // Token: 0x04000002 RID: 2
-        public static string ModName = "KeplerthModExample";
-
-
-        private int GetModHasId()
+        public static int GetModHasId()
         {
             return ModName.GetHashCode();
+        }
+
+        // 初始化XML文件
+        private void InitXml()
+        {
+            string gamePath = System.AppDomain.CurrentDomain.BaseDirectory;
+            string modInfoPath = gamePath + "\\Keplerth_Data\\StreamingAssets\\Mods\\" + ModInit.ModName + "\\ModIni\\";
+            if (!Directory.Exists(modInfoPath))
+            {
+                Directory.CreateDirectory(modInfoPath);
+                XmlFile xml = new XmlFile();
+                xml.InitXml(modInfoPath);
+            }
         }
     }
 }
