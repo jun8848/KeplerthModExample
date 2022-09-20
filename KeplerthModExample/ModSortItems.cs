@@ -10,9 +10,12 @@ namespace KeplerthModExample
     {
         public static bool Prefix(int bagID, int bagCount)
         {
-
-            ModTools.SortItems(bagID, bagCount);
-            return false;
+            if (bagID==0)
+            {
+                ModTools.SortItems(0, bagCount);
+                return false;
+            }
+            return true;
         }
     }
 }

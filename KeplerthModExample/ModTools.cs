@@ -12,20 +12,38 @@ namespace KeplerthModExample
     public class ModTools
     {
         /// <summary>
-        /// 游戏原版整理背包
+        /// 整理背包
         /// </summary>
         public static void SortItems(int bagID, int bagCount)
         {
             Dictionary<int, ItemData> bagItems = BaseBag.GetBagItems(bagID, int.MaxValue);
             for (int i = 0; i < bagCount - 1; i++)
             {
-                if (bagID != 0 || i >= 10)
+                if (i >= 10 && i <= 20)
                 {
                     for (int j = i + 1; j < bagCount; j++)
                     {
                         if (bagItems.ContainsKey(j))
                         {
-                            
+                            if (!bagItems.ContainsKey(i))
+                            {
+                                if (ConfigItem.getItemType(bagItems[j].id) != 19)
+                                {
+                                    bagItems[i] = bagItems[j];
+                                    bagItems.Remove(j);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (i >= 20)
+                {
+                    for (int j = i + 1; j < bagCount; j++)
+                    {
+                        if (bagItems.ContainsKey(j))
+                        {
                             if (!bagItems.ContainsKey(i))
                             {
                                 bagItems[i] = bagItems[j];
@@ -36,11 +54,6 @@ namespace KeplerthModExample
                                 ItemData itemData = bagItems[i];
                                 ItemData itemData2 = bagItems[j];
                                 int itemType = ConfigItem.getItemType(itemData.id);
-                                // 整理时忽略背包第一行饰品
-                                if (i < 20 && itemType == 19)
-                                {
-                                    continue;
-                                }
                                 int itemType2 = ConfigItem.getItemType(itemData2.id);
                                 if ((itemType == itemType2) ? ((itemData.id == itemData2.id) ? (itemData.count < itemData2.count) : (itemData.id > itemData2.id)) : (itemType > itemType2))
                                 {
@@ -52,7 +65,26 @@ namespace KeplerthModExample
                     }
                 }
             }
-
+            for (int i = 10; i < 20; i++)
+            {
+                ModDebug.Log(1);
+                if (bagItems.ContainsKey(i) && ConfigItem.getItemType(bagItems[i].id) != 19)
+                {
+                    ModDebug.Log(2);
+                    for (int j = i + 1; j <= 20; j++)
+                    {
+                        ModDebug.Log(3);
+                        if (bagItems.ContainsKey(j) && ConfigItem.getItemType(bagItems[j].id) == 19)
+                        {
+                            ModDebug.Log(4);
+                            ItemData itemData = bagItems[i];
+                            bagItems[i] = bagItems[j];
+                            bagItems[j] = itemData;
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -74,7 +106,7 @@ namespace KeplerthModExample
             }
             return list;
         }
-        
+
         /// <summary>
         /// 获取玩家穿戴饰品的buff列表
         /// </summary>
