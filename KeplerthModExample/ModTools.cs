@@ -19,14 +19,8 @@ namespace KeplerthModExample
             Dictionary<int, ItemData> bagItems = BaseBag.GetBagItems(bagID, int.MaxValue);
             for (int i = 0; i < bagCount - 1; i++)
             {
-                int index = GetBagAccesorieNum();
                 if (bagID != 0 || i >= 10)
                 {
-                    //if (ConfigItem.getItemType(bagItems[i].id) == 19)
-                    //{
-                    //    continue;
-                    //}
-
                     for (int j = i + 1; j < bagCount; j++)
                     {
                         if (bagItems.ContainsKey(j))
@@ -42,6 +36,7 @@ namespace KeplerthModExample
                                 ItemData itemData = bagItems[i];
                                 ItemData itemData2 = bagItems[j];
                                 int itemType = ConfigItem.getItemType(itemData.id);
+                                // 整理时忽略背包第一行饰品
                                 if (i < 20 && itemType == 19)
                                 {
                                     continue;
@@ -141,25 +136,5 @@ namespace KeplerthModExample
             return list;
         }
 
-        /// <summary>
-        /// 获取饰品数量
-        /// </summary>
-        /// <returns></returns>
-        public static int GetBagAccesorieNum()
-        {
-            int num = 0;
-            Dictionary<int, ItemData> bagItems = BaseBag.GetBagItems(0, int.MaxValue);
-            foreach (KeyValuePair<int, ItemData> keyValuePair in bagItems)
-            {
-                if (keyValuePair.Key<20 && keyValuePair.Key >= 10)
-                {
-                    if (keyValuePair.Value.subType == 19)
-                    {
-                        num++;
-                    }
-                }
-            }
-            return num + 10;
-        }
     }
 }
