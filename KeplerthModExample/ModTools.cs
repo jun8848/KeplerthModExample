@@ -20,12 +20,18 @@ namespace KeplerthModExample
             for (int i = 0; i < bagCount - 1; i++)
             {
                 int index = GetBagAccesorieNum();
-                if (bagID != 0 || i >= index)
+                if (bagID != 0 || i >= 10)
                 {
+                    //if (ConfigItem.getItemType(bagItems[i].id) == 19)
+                    //{
+                    //    continue;
+                    //}
+
                     for (int j = i + 1; j < bagCount; j++)
                     {
                         if (bagItems.ContainsKey(j))
                         {
+                            
                             if (!bagItems.ContainsKey(i))
                             {
                                 bagItems[i] = bagItems[j];
@@ -36,6 +42,10 @@ namespace KeplerthModExample
                                 ItemData itemData = bagItems[i];
                                 ItemData itemData2 = bagItems[j];
                                 int itemType = ConfigItem.getItemType(itemData.id);
+                                if (itemType==19)
+                                {
+                                    continue;
+                                }
                                 int itemType2 = ConfigItem.getItemType(itemData2.id);
                                 if ((itemType == itemType2) ? ((itemData.id == itemData2.id) ? (itemData.count < itemData2.count) : (itemData.id > itemData2.id)) : (itemType > itemType2))
                                 {
