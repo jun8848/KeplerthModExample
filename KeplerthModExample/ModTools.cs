@@ -42,7 +42,7 @@ namespace KeplerthModExample
                                 ItemData itemData = bagItems[i];
                                 ItemData itemData2 = bagItems[j];
                                 int itemType = ConfigItem.getItemType(itemData.id);
-                                if (itemType==19)
+                                if (i <= 20 && itemType == 19)
                                 {
                                     continue;
                                 }
