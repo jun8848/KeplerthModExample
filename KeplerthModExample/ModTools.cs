@@ -67,16 +67,12 @@ namespace KeplerthModExample
             }
             for (int i = 10; i < 20; i++)
             {
-                ModDebug.Log(1);
                 if (bagItems.ContainsKey(i) && ConfigItem.getItemType(bagItems[i].id) != 19)
                 {
-                    ModDebug.Log(2);
                     for (int j = i + 1; j <= 20; j++)
                     {
-                        ModDebug.Log(3);
                         if (bagItems.ContainsKey(j) && ConfigItem.getItemType(bagItems[j].id) == 19)
                         {
-                            ModDebug.Log(4);
                             ItemData itemData = bagItems[i];
                             bagItems[i] = bagItems[j];
                             bagItems[j] = itemData;
