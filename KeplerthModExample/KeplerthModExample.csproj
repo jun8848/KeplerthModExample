@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accessories.cs" />
-    <Compile Include="ExampleMod.cs" />
+    <Compile Include="ModSortItems.cs" />
     <Compile Include="ModDebug.cs" />
     <Compile Include="ModInit.cs" />
     <Compile Include="ModTools.cs" />
