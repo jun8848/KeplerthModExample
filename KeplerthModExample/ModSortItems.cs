@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace KeplerthModExample
 {
     [HarmonyPatch(typeof(BaseBag), "SortItems")]
-    public class ExampleMod
+    public class ModSortItems
     {
         public static bool Prefix(int bagID, int bagCount)
         {
