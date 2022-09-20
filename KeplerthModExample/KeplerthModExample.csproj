@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Accessories.cs" />
     <Compile Include="CreateNewItem.cs" />
+    <Compile Include="CreateNewPlacement.cs" />
     <Compile Include="ExampleMod.cs" />
     <Compile Include="ModSortItems.cs" />
     <Compile Include="ModDebug.cs" />
