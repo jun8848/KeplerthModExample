@@ -2,11 +2,7 @@
 using Harmony;
 using Keplerth;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace KeplerthModExample
@@ -25,6 +21,8 @@ namespace KeplerthModExample
             }
             ConfigPlacement.Table = JsonConvert.DeserializeObject<Dictionary<int, ConfigPlacement>>(www.text);
             www.Dispose();
+
+            // 添加放置物
             CreatePlacement();
 
             Workshop.LoadModsConfig<ConfigPlacement>(ConfigPlacement.Table, "ConfigPlacement");
@@ -33,17 +31,24 @@ namespace KeplerthModExample
 
         public static void CreatePlacement()
         {
-            int id = 200000;
-
             for (int i = 0; i < 10; i++)
             {
                 ConfigPlacement data = ConfigPlacement.Table[2001];
                 ConfigPlacement placement = new ConfigPlacement(data);
-                placement.HandItemId = id + i;
-                ModDebug.Log(placement.HandItemId);
-                ConfigPlacement.Table.Add(id + 10000 + i, placement);
+                placement.HandItemId = CreateNewItem.ItemId + i;
+                // 根据当前游戏语言 更改材质
+                if (Config.SelectLanguage != LanguageType.Chinese || Config.SelectLanguage != LanguageType.ChineseTw)
+                {
+                    placement.Texture = ConfigPlacement.Table[2092].Texture;
+                }
+                ConfigPlacement.Table.Add(CreateNewItem.ItemId + 10000 + i, placement);
             }
             
+        }
+
+        public static void CreateBox()
+        {
+
         }
     }
 }

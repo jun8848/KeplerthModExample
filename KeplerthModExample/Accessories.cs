@@ -46,7 +46,7 @@ namespace KeplerthModExample
                 Config.PlayerCharacter.BuffCtrl.AttachBuff(playerAccesorises[i], BuffTypeIndex.None, false, 0f, 1, 0f);
             }
 
-
+           
 
 
             //if (Input.GetKeyDown(KeyCode.T))

@@ -14,6 +14,8 @@ namespace KeplerthModExample
         // MOD名称
         public static string ModName = "KeplerthModExample";
 
+        public static int ModId = 2000000;
+
         static ModInit()
         {
             

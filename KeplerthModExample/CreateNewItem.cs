@@ -13,6 +13,8 @@ namespace KeplerthModExample
     [HarmonyPatch(typeof(ConfigItem), "initData")]
     public class CreateNewItem
     {
+        public static int ItemId = ModInit.ModId + 6000;
+
         public static bool Prefix()
         {
             ConfigItem.Table.Clear();
@@ -22,6 +24,8 @@ namespace KeplerthModExample
             }
             ConfigItem.Table = JsonConvert.DeserializeObject<Dictionary<int, ConfigItem>>(www.text);
             www.Dispose();
+
+            // 添加物品
             CreateItem();
 
             Workshop.LoadModsConfig<ConfigItem>(ConfigItem.Table, "ConfigItem");
@@ -31,18 +35,28 @@ namespace KeplerthModExample
 
         public static void CreateItem()
         {
-            int id = 200000;
-            
+
             for (int i = 0; i < 10; i++)
             {
                 ConfigItem data = ConfigItem.Table[3201];
                 ConfigItem configItem = new ConfigItem(data);
-              
-                configItem.Name = "ItemName" + (id + i);
-                configItem.PlacenmentId = id + 10000 + i;
-                ModDebug.Log("PlacenmentId:" + configItem.PlacenmentId);
-                ConfigItem.Table.Add(id + i, configItem);
+                configItem.Name = "ItemName" + (ItemId + i);
+                configItem.PlacenmentId = ItemId + 10000 + i;
+                ConfigItem.Table.Add(ItemId + i, configItem);
                 
+            }
+        }
+
+        public static void CreateBoxItem()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                //ConfigItem data = ConfigItem.Table[3631];
+                //ConfigItem configItem = new ConfigItem(data);
+                //configItem.Name = "ItemName" + (id + i);
+                //configItem.PlacenmentId = id + 10000 + i;
+                //ModDebug.Log("PlacenmentId:" + configItem.PlacenmentId);
+                //ConfigItem.Table.Add(id + i, configItem);
             }
         }
     }
